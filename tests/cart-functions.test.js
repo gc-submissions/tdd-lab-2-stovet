@@ -1,7 +1,7 @@
-const {calculateChange, calculateTotal, isSufficientPayment, addItem} = require("../src/js/cart-functions")
+const {calculateChange, calculateTotal, isSufficientPayment, addItem, removeItem} = require("../src/js/cart-functions")
 
 describe("calculateChange", () => {
-  test.todo("add calculateChange tests here");
+  
   test("Given total 5 and payment 6, it returns 1.",function(){
     expect(calculateChange(5, 6)).toEqual(1);
   });
@@ -14,7 +14,7 @@ describe("calculateChange", () => {
 });
 
 describe("isSufficientPayment", () => {
-  test.todo("add isSufficientPayment tests here");
+  
   test("total 5 payment 6 return true", function(){
     expect(isSufficientPayment(5, 6)).toEqual(true);
   });
@@ -30,7 +30,7 @@ describe("isSufficientPayment", () => {
 });
 
 describe("calculateTotal", () => {
-  test.todo("add calculateTotal tests here");
+  
   test("one item with one price, return price", function(){
     expect(calculateTotal([{name: "Pizza", price: 4.99}])).toEqual(4.99);
   });
@@ -46,7 +46,7 @@ describe("calculateTotal", () => {
 });
 
 describe("addItem", () => {
-  test.todo("add addItem tests here");
+  
   test("call addItem w/ emtpy array and check it has one item in it", function(){
     // Arrange
 
@@ -63,9 +63,32 @@ describe("addItem", () => {
     // Assert
     expect(itemsArray).toEqual([{name: "Beans", price: 3}, {name: "Sugar", price: 2}])
   });
-  //test("")
+  test("test starting with 3 items in array", function(){
+    //Arrange
+    itemsArray = [{name: "Taco", price: 5}, {name: "Coffee", price: 3}, {name: "Beer", price: 7}];
+    // Act
+    addItem(itemsArray, "Rice", 10)
+    expect(itemsArray).toEqual([{name: "Taco", price: 5}, {name: "Coffee", price: 3}, {name: "Beer", price: 7}, {name: "Rice", price: 10}]);
+  });
 });
-
 describe("removeItem", () => {
-  test.todo("add removeItem tests here");
+  
+  test("Remove first element from an array of 3 items", function(){
+    //Arrange
+    const itemsArray = [{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}];
+    //Act
+    removedItemsArray = removeItem(itemsArray, 0);
+    //Assert
+    expect(removedItemsArray).toEqual([{name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}]);
+  });
+  
+  // needs work
+  test("Remove last element from array of 3 items", function(){
+    //Arrange
+    const itemsArray = [{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}];
+    //Act
+    removedItemsArray = removeItem(itemsArray, 2);
+    //Assert
+    expect(removedItemsArray).toEqual([{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}]);
+  })
 });
