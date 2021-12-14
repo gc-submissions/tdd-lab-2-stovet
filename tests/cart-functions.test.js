@@ -31,6 +31,18 @@ describe("isSufficientPayment", () => {
 
 describe("calculateTotal", () => {
   test.todo("add calculateTotal tests here");
+  test("one item with one price, return price", function(){
+    expect(func.calculateTotal([{name: "Pizza", price: 4.99}])).toEqual(4.99);
+  });
+  test("3 items return total of prices", function(){
+    expect(func.calculateTotal([{name: "gum", price: 3.50}, {name: "Sweater", price: 12.99}, {name: "loose change", price: 0.03}])).toEqual(16.52);
+  });
+  test("empty array returns 0", function(){
+    expect(func.calculateTotal([])).toEqual(0);
+  });
+  test("another array", function(){
+    expect(func.calculateTotal([{name: "apple", price: 2}, {name: "book", price: 12.99}])).toEqual(14.99);
+  })
 });
 
 describe("addItem", () => {

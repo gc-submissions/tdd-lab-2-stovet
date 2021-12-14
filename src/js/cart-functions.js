@@ -8,8 +8,17 @@ function isSufficientPayment(total, payment){
     } return false;
 }
 
+function calculateTotal(itemsArray){
+    let total = 0.00;
+    itemsArray.forEach(item => {
+        total += item.price;
+    })
+    return parseFloat(total.toFixed(2));
+}
+
 
 module.exports = {
     calculateChange,
-    isSufficientPayment
+    isSufficientPayment,
+    calculateTotal: calculateTotal
 }
