@@ -16,9 +16,18 @@ function calculateTotal(itemsArray){
     return parseFloat(total.toFixed(2));
 }
 
+function addItem(itemsArray, name, price){
+    let newObj = new Object();
+    newObj.name = name;
+    newObj.price = price;
+    itemsArray.push(newObj);
+    return itemsArray;
+}
+
 
 module.exports = {
-    calculateChange,
-    isSufficientPayment,
-    calculateTotal: calculateTotal
+    calculateChange: calculateChange,
+    isSufficientPayment: isSufficientPayment,
+    calculateTotal: calculateTotal,
+    addItem: addItem
 }
