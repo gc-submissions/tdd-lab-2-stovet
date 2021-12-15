@@ -6,7 +6,7 @@ describe("calculateChange", () => {
     expect(calculateChange(5, 6)).toEqual(1);
   });
   test("Given total 12.30 and payment 13.03, it returns 0.73.", function(){
-    expect(calculateChange(12.30, 13.03)).toEqual(0.73);
+    expect(calculateChange(12.30, 13.03)).toBeCloseTo(0.73);
   });
   test("Give total 17 and payment 21", function(){
     expect(calculateChange(17, 21)).toEqual(4);
@@ -35,29 +35,31 @@ describe("calculateTotal", () => {
     expect(calculateTotal([{name: "Pizza", price: 4.99}])).toEqual(4.99);
   });
   test("3 items return total of prices", function(){
-    expect(calculateTotal([{name: "gum", price: 3.50}, {name: "Sweater", price: 12.99}, {name: "loose change", price: 0.03}])).toEqual(16.52);
+    expect(calculateTotal([
+      {name: "gum", price: 3.50}, 
+      {name: "Sweater", price: 12.99}, 
+      {name: "loose change", price: 0.03}])).toEqual(16.52);
   });
   test("empty array returns 0", function(){
     expect(calculateTotal([])).toEqual(0);
   });
   test("another array", function(){
-    expect(calculateTotal([{name: "apple", price: 2}, {name: "book", price: 12.99}])).toEqual(14.99);
-  })
+    expect(calculateTotal([
+      {name: "apple", price: 2}, 
+      {name: "book", price: 12.99}])).toEqual(14.99);
+  });
 });
 
 describe("addItem", () => {
   
   test("call addItem w/ emtpy array and check it has one item in it", function(){
-    // Arrange
-
-    // Act
-    let item = addItem([], "Beans", 3)
-    // Assert
-    expect(item).toEqual([{name: "Beans", price: 3}]);
+    let result = []; // set up emty array     --ARRANGE--
+    addItem(result, "Beans", 3); // call functoin to modify array     --ACT--
+    expect(result).toEqual([{name: "Beans", price: 3}]);    // --ASSERT--
   });
   test("create Items array, call addItem w/ itemsArray, name 'Sugar', price 2 check that it has two items in it", function(){
     // Arrange
-    itemsArray = [{name: "Beans", price: 3}];
+    let itemsArray = [{name: "Beans", price: 3}];
     // Act
     addItem(itemsArray, "Sugar", 2);
     // Assert
@@ -65,10 +67,13 @@ describe("addItem", () => {
   });
   test("test starting with 3 items in array", function(){
     //Arrange
-    itemsArray = [{name: "Taco", price: 5}, {name: "Coffee", price: 3}, {name: "Beer", price: 7}];
+    let itemsArray = [{name: "Taco", price: 5}, {name: "Coffee", price: 3}, {name: "Beer", price: 7}];
     // Act
     addItem(itemsArray, "Rice", 10)
-    expect(itemsArray).toEqual([{name: "Taco", price: 5}, {name: "Coffee", price: 3}, {name: "Beer", price: 7}, {name: "Rice", price: 10}]);
+    expect(itemsArray).toEqual(
+      [{name: "Taco", price: 5}, 
+      {name: "Coffee", price: 3}, 
+      {name: "Beer", price: 7}, {name: "Rice", price: 10}]);
   });
 });
 describe("removeItem", () => {
@@ -77,9 +82,9 @@ describe("removeItem", () => {
     //Arrange
     const itemsArray = [{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}];
     //Act
-    removedItemsArray = removeItem(itemsArray, 0);
+    removeItem(itemsArray, 0);
     //Assert
-    expect(removedItemsArray).toEqual([{name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}]);
+    expect(itemsArray).toEqual([{name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}]);
   });
   
   // needs work
@@ -87,8 +92,16 @@ describe("removeItem", () => {
     //Arrange
     const itemsArray = [{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}];
     //Act
-    removedItemsArray = removeItem(itemsArray, 2);
+    removeItem(itemsArray, 2);
     //Assert
-    expect(removedItemsArray).toEqual([{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}]);
+    expect(itemsArray).toEqual([{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}]);
+  })
+  test("Remove middle element from array of 3 items", function(){
+    //Arrange
+    const itemsArray = [{name: "Jelly", price: 3.50}, {name: "Peanut Butter", price: 4.25}, {name: "Bread", price: 5}];
+    //Act
+     removeItem(itemsArray, 1);
+    //Assert
+    expect(itemsArray).toEqual([{name: "Jelly", price: 3.50}, {name: "Bread", price: 5}]);
   })
 });

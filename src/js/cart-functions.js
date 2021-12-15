@@ -21,16 +21,17 @@ function addItem(itemsArray, name, price){
     newObj.name = name;
     newObj.price = price;
     itemsArray.push(newObj);
-    return itemsArray;
 }
 
 function removeItem(itemsArray, index){ // needs work
-    if(index > 0){
-        return itemsArray.slice(index, itemsArray.length);
+    if(index === 0){
+        itemsArray.shift();
+    } else if(index === (itemsArray.length -1)){
+        itemsArray.pop();
+    } else {
+        itemsArray.splice(index, 1);
     }
-    return itemsArray.slice(index + 1, itemsArray.length);
 }
-
 
 module.exports = {
     calculateChange: calculateChange,
