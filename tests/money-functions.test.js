@@ -34,4 +34,13 @@ describe("getCoins", () => {
   test("32 cents = quarters:1, dimes:0, nickels:1, pennies: 2", function(){
     expect(getCoins(32)).toEqual({quarters: 1, dimes: 0, nickels: 1, pennies: 2});
   })
+  test("10 cents = 1 dime", function(){
+    expect(getCoins(10)).toEqual({quarters: 0, dimes: 1, nickels: 0, pennies: 0})
+  })
+  test("27 cents to = 1 quarter, 2 pennies", function(){
+    expect(getCoins(27)).toEqual({quarters: 1, dimes: 0, nickels: 0, pennies:2})
+  });
+  test("68 cents to = 2 quarters, 1 dime, 1 nickel, 3 pennies", function(){
+    expect(getCoins(68)).toEqual({quarters: 2, dimes: 1, nickels: 1, pennies: 3})
+  })
 });
