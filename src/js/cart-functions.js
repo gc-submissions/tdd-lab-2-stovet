@@ -24,13 +24,7 @@ function addItem(itemsArray, name, price){
 }
 
 function removeItem(itemsArray, index){ 
-    if(index === 0){
-        itemsArray.shift();
-    } else if(index === (itemsArray.length -1)){
-        itemsArray.pop();
-    } else {
         itemsArray.splice(index, 1);
-    }
 }
 
 module.exports = {
