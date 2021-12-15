@@ -23,7 +23,7 @@ function addItem(itemsArray, name, price){
     itemsArray.push(newObj);
 }
 
-function removeItem(itemsArray, index){ // needs work
+function removeItem(itemsArray, index){ 
     if(index === 0){
         itemsArray.shift();
     } else if(index === (itemsArray.length -1)){
